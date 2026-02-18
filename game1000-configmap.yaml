@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: game1000-config
+  namespace: saket
+data:
+  DB_URL: jdbc:postgresql://postgres.saket:5432/db
+  DB_USER: postgres

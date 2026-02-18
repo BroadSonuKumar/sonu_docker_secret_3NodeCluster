@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: game1000
+  namespace: saket
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: game1000
+  template:
+    metadata:
+      labels:
+        app: game1000
+    spec:
+      imagePullSecrets:
+        - name: saket-dockerhub-secret
+      containers:
+        - name: game1000
+          image: ssaket990/game1000-saket-private:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: game1000-config
+            - secretRef:
+                name: game1000-secret
